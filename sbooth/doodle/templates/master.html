@@ -1,0 +1,31 @@
+<!doctype html>{% load static %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>{% block title %}{% endblock %}Schemer Booth</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.min.css" %}">
+    <link rel="stylesheet" href="{% static "doodle/site.css" %}">
+    <script src="{% static "doodle/jquery-1.7.2.min.js" %}"></script>
+    <script src="{% static "doodle/site.js" %}"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="navbar">
+        <div class="navbar-inner">
+          <div class="container">
+            <a class="brand" href="/">Schemer Booth</a>
+            <ul class="nav">
+              <li{% if request.path == '/' %} class="active"{% endif %}><a href="/">Home</a></li>
+              <li{% if request.path == '/photos/' %} class="active"{% endif %}><a href="/photos/">Browse Photos</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      {% block content %}{% endblock %}
+      <footer>Created on a Chromebook with <a href="http://neutronide.com">NeutronIDE</a></footer>
+    </div>
+  </body>
+</html>

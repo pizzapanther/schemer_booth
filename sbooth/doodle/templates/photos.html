@@ -1,0 +1,25 @@
+{% extends "master.html" %}{% load thumbnail %}
+{% block title %}Schemers - Page {{ page_obj.number }} &sdot; {% endblock %}
+{% block content %}
+<div class="hero-unit">
+  <h1>Schemers - Page {{ page_obj.number }}</h1>
+  <div class="schemers">
+    {% for s in schemers %}
+    <div class="schemer">
+      <a href="/photos/{{ s.id }}/">
+      {{ s.name }}<br>
+      {% thumbnail s.comp "175x175" as im %}
+      <img src="{{ im.url }}" alt="">
+      {% endthumbnail %}
+      </a>
+    </div>
+    {% endfor %}
+    <div style="clear: both;"></div>
+  </div>
+  <div class="pages">
+    {% if page_obj.has_previous %}<a class="newer" href="?page={{ page_obj.previous_page_number }}">&laquo; Previous Page</a>{% endif %}
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    {% if page_obj.has_next %}<a class="older" href="?page={{ page_obj.next_page_number }}">Next Page &raquo;</a>{% endif %}
+  </div>
+</div>
+{% endblock %}

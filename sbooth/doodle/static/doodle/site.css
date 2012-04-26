@@ -1,0 +1,51 @@
+video, canvas, .btnbar {
+  display: block;
+  margin: 0 auto 20px auto;
+  width: 640px;
+  clear: both;
+}
+
+.relwrapper {
+  position: relative;
+}
+
+#facehair {
+  position: absolute;
+  top: 330px;
+  left: 370px;
+  cursor:pointer;
+}
+
+footer {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.schemer {
+  float: left;
+  margin: 0 0 40px 40px;
+  width: 175px;
+}
+
+.schemer:first-child, .schemer:nth-child(5), .schemer:nth-child(9), .schemer:nth-child(13) {
+  margin-left: 0px;
+  clear: both;
+}
+
+.title img {
+  display: block;
+  margin: 0 auto;
+}
+
+.title h1 {
+  text-align: center;
+  font-size: 80px;
+  margin: 10px 0 40px 0;
+}
+
+.title p {
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+

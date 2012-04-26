@@ -1,0 +1,57 @@
+{% extends "master.html" %}{% load static %}
+{% block content %}
+<script>
+  jQuery(document).ready(function () {  load_webcam(); });
+</script>
+<div>
+  <div class="title">
+    <img src="{% static "doodle/title.png" %}" alt="Schemer">
+    <h1>Booth</h1>
+    <p>
+      Get your Schemer Face on!  Take your photo below and tache out.
+    </p>
+  </div>
+  <div class="alert alert-block">
+    <button class="close" data-dismiss="alert" onclick="$('.alert').css('display', 'none')">×</button>
+    <h4 class="alert-heading">Warning!</h4>
+    You need to enable the Enable MediaStream Flag at chrome://flags/ in Chrome to make this work.
+  </div>
+  {% if message %}
+  <div class="alert alert-block alert-error">
+    <button class="close" data-dismiss="alert" onclick="$('.alert').css('display', 'none')">×</button>
+    <h4 class="alert-heading">Error!</h4>
+    {{ message|safe }}
+  </div>
+  {% endif %}
+  <div>
+    <strong>Directions:</strong><br>
+    1. Snap A Pic. &nbsp;2. Adjust your tache. &nbsp;3. Fill out the form and upload.
+    <br><br>
+  </div>
+  <div class="relwrapper">
+    <img src="{% static "doodle/facehair.png" %}" id="facehair" alt="" draggable="true"/>
+    <video autoplay id="live"></video>
+    <canvas id="snapshot" style="display: none;"></canvas>
+    <div class="btnbar" id="presnap">
+      <button class="btn btn-primary" onclick="snap()">Snap</button>
+    </div>
+    <div class="btnbar" id="postsnap" style="display: none;">
+      <form id="upload_form" class="well" method="post" onsubmit="return upload()" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label>Your Name</label>
+        <input type="text" class="span3" name="name" id="id_name">
+        
+        <label>URL</label>
+        <input type="text" class="span3" name="url" id="id_url">
+        <span class="help-block">Optional URL to link to your photo.</span>
+        
+        <input type="hidden" name="imgdata" id="id_imgdata" value="">
+        <input type="hidden" name="coord" id="id_coord" value="220,330">
+        
+        <a href="javascript: void(0)" class="btn btn-primary" onclick="reset()">Reset</a>
+        <button class="btn btn-danger" onclick="return upload()">Upload</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

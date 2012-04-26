@@ -1,0 +1,14 @@
+{% extends "master.html" %}
+{% block title %}{{ schemer.name }} &sdot; {% endblock %}
+{% block content %}
+<div class="hero-unit">
+  <h1>{{ schemer.name }}</h1>
+  {% if schemer.url %}<p>{{ schemer.url|urlize }}</p>{% endif %}
+  <p>
+    <img src="{{ schemer.comp.url }}" alt="">
+  </p>
+  {% with image="http://"|add:request.get_host|add:schemer.comp.url %}{% with desc=schemer.name|add:"'s Schemer Face" %}
+  {% include "share.html" %}
+  {% endwith %}{% endwith %}
+</div>
+{% endblock %}
