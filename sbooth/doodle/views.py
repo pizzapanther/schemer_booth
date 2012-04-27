@@ -82,7 +82,7 @@ def home (request):
     else:
       message = 'Missing a Name'
       
-  c = {'message': message}
+  c = {'message': message, 'latest': Schemer.objects.all()[:5]}
   return TemplateResponse(request, 'home.html', c)
   
 @cache_page(300)

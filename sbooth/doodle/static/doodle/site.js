@@ -37,6 +37,7 @@ function load_webcam () {
         facehair.addEventListener('dragstart', handleDragStart, false);
         
     } else {
+        $("#flag_alert").css('display', 'block');
         alert('webkitGetUserMedia not supported');
     }
 }
