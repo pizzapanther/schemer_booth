@@ -11,7 +11,7 @@ from sbooth.doodle.views import Photos
 urlpatterns = patterns('',
     (r'^favicon.ico', RedirectView.as_view(url='static/doodle/favicon.png')),
     
-    url(r'^photos/$', cache_page(Photos.as_view(), 1), name="index"),
+    url(r'^photos/$', cache_page(Photos.as_view(), 60), name="index"),
     url(r'^photos/(\d+)/$', 'sbooth.doodle.views.photo', name='photo'),
     url(r'^$', 'sbooth.doodle.views.home', name='home'),
     

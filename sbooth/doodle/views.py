@@ -12,11 +12,13 @@ from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
 from django.shortcuts import get_object_or_404
 from django.views.generic import ListView
+from django.views.decorators.cache import cache_page
 
 from .models import Schemer
 
 TACHE_PATH = os.path.join(settings.PPATH, 'doodle', 'static', 'doodle', 'facehair.png')
 
+@cache_page(300)
 def home (request):
   message = ''
   
@@ -83,6 +85,7 @@ def home (request):
   c = {'message': message}
   return TemplateResponse(request, 'home.html', c)
   
+@cache_page(300)
 def photo (request, sid):
   c = {'schemer': get_object_or_404(Schemer, id=sid)}
   return TemplateResponse(request, 'photo.html', c)
@@ -90,6 +93,6 @@ def photo (request, sid):
 class Photos (ListView):
   queryset = Schemer.objects.all()
   context_object_name = "schemers"
-  paginate_by = 2
+  paginate_by = 12
   template_name = 'photos.html'
   

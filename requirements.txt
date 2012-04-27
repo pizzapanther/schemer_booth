@@ -2,3 +2,8 @@ django==1.4
 south==0.7.4
 PIL==1.1.7
 sorl-thumbnail==11.12
+django-redis==1.4.5
+-e hg+https://bitbucket.org/pizzapanther/django-redis-sessions#egg=django-redis-sessions
+pytz==2012b
+gunicorn==0.14.2
+redis==2.4.11

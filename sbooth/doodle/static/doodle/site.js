@@ -2,8 +2,9 @@ function handleDragEnd (e) {
   var t = parseInt($("#facehair").css('top').replace('px', ''));
   var l = parseInt($("#facehair").css('left').replace('px', ''));
   
-  t = t + (e.offsetY - 17);
-  l = l + (e.offsetX - 100);
+  t = t + (e.y - start.y);
+  l = l + (e.x - start.x);
+  
   $("#facehair").css('top', t + 'px');
   $("#facehair").css('left', l + 'px');
   
@@ -12,6 +13,7 @@ function handleDragEnd (e) {
   document.getElementById("id_coord").value = l + ',' + t;
 }
 
+var start;
 function handleDragStart (e) {
   // Target (this) element is the source node.
   this.style.opacity = '0.4';
@@ -19,6 +21,8 @@ function handleDragStart (e) {
   dragSrcEl = this;
 
   e.dataTransfer.effectAllowed = 'move';
+  
+  start = e;
 }
 
 function load_webcam () {

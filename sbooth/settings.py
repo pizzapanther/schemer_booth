@@ -120,6 +120,9 @@ WSGI_APPLICATION = 'sbooth.wsgi.application'
 TEMPLATE_DIRS = ()
 
 INSTALLED_APPS = (
+    'gunicorn',
+    'redis_cache',
+    
     'south',
     'sorl.thumbnail',
     
@@ -165,3 +168,22 @@ LOGGING = {
         },
     }
 }
+
+THUMBNAIL_FORMAT = 'PNG'
+
+CACHES = {
+  'default': {
+    'BACKEND': 'redis_cache.cache.RedisCache',
+    'LOCATION': 'localhost:6379',
+    'OPTIONS': {
+        'DB': 13,
+        'PASSWORD': '',
+    },
+  },
+}
+
+SESSION_ENGINE = 'redis_sessions.backends.redis'
+REDIS_HOST = 'localhost'
+REDIS_PORT = 6379
+REDIS_DB = 14
+REDIS_PASSWORD = None
